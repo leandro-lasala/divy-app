@@ -1,0 +1,65 @@
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.app-mobile {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background-color: #fafafa;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+
+.inicio {
+  min-height: 100dvh;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 32px;
+}
+
+.inicio-logo {
+  width: 240px;
+  max-width: 85%;
+  height: auto;
+  transform: translateY(-80px);
+}
+
+.inicio-acciones {
+  position: absolute;
+  bottom: 11%;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.inicio-registrarse {
+  width: 100%;
+  padding: 8px;
+  background: var(--coral);
+  color: white;
+  border-radius: 40px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  max-width: 200px;
+}
+
+.inicio-login {
+  color: var(--oscuro);
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+}

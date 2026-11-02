@@ -1,0 +1,302 @@
+
+.home {
+  min-height: 100dvh;
+  padding: 30px 25px;
+  background-color: #fafafa;
+  color: var(--oscuro);
+}
+
+.home-iconos {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-iconos button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--oscuro);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.home-header h1 {
+  font-size: 30px;
+  margin: 25px 0 8px;
+}
+
+.home-header p {
+  font-size: 15px;
+  margin: 0;
+  color: #989797;
+}
+
+.home-saldos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+
+.home-tarjeta {
+  min-height: 112px;
+  padding: 20px 25px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.home-tarjeta span {
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.home-tarjeta strong {
+  font-size: 32px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.home-debes {
+  background-color: var(--amarillo);
+  color: var(--naranja);
+}
+
+.home-te-deben {
+  background-color: var(--celeste);
+  color: var(--azul);
+}
+
+
+.home-te-deben strong {
+  color: var(--azul);
+}
+
+.home-acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+
+.home-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.home-botones {
+  display: flex;
+  gap: 12px;
+}
+
+.home-botones button {
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  border: 2px solid #FFD0C7;
+  border-radius: 14px;
+  background-color: white;
+  color: var(--coral);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.home-recordatorio {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #F0F0F0 100%
+  );
+  color: #696969;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.home-campana {
+  position: absolute;
+  right: 16px;
+  width: 14px;
+  height: 17px;
+}
+
+
+
+.home-amigos {
+  margin-top: 35px;
+}
+
+.home-amigos-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.home-amigos-titulo h2 {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.home-amigos-titulo > span {
+  font-size: 38px;
+  line-height: 1;
+  color: var(--oscuro);
+}
+
+.home-amigos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.home-amigo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.home-amigo-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.home-amigo-info img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.home-amigo-info span {
+  font-size: 17px;
+}
+
+.home-amigo strong {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.home-deuda {
+  color: var(--coral);
+}
+
+.home-cobro {
+  color: #80A918;
+}
+
+.espacio{
+    height: 100px;
+}
+
+/* Botón flotante */
+.home-anadir-amigo {
+  position: fixed;
+  bottom: 115px;
+  right: max(20px, calc((100vw - 390px) / 2 + 20px));
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 18px;
+  border: none;
+  border-radius: 40px;
+
+  background-color: var(--coral);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.home-anadir-icono {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+
+
+.home {
+  padding-bottom: 110px;
+}
+
+/* ************** NAV VAR ************************ */
+
+.home-navegacion {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 32px);
+  max-width: 360px;
+  height: 78px;
+
+  background-color: #1E1E1E;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.home-navegacion button {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+
+  border: none;
+  background: transparent;
+  padding: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-navegacion .nav-activo {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  background-color: var(--coral);
+  border-radius: 50%;
+}
+
+

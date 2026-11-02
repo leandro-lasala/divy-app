@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+
+:root {
+  --coral: #F94E32;
+  --amarillo: #F1F2B6;
+  --celeste: #D7EFFF;
+  --oscuro: #323131;
+  --naranja: #FF9500;
+  --azul: #72A2EE;
+}
+
+
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Roman.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Medium.otf') format('opentype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/HelveticaNeue-Bold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Mignone';
+  src: url('/fonts/Mignone.ttf') format('truetype');
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  background-color: #e8e8e8;
+}
+
+h1 {
+  font-weight: 700;
+}

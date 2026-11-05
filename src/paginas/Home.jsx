@@ -1,6 +1,34 @@
+import { useState, useEffect } from 'react'
+import { obtenerGastos } from '../servicios/gastos.js'
 import "./Home.css";
 
 function Home() {
+
+  // ***********************consulta datos*********************
+  
+const [gastos, setGastos] = useState([])
+const [cargando, setCargando] = useState(true)
+const [error, setError] = useState('')
+
+useEffect(() => {
+  async function cargarGastos() {
+    try {
+      const datos = await obtenerGastos()
+      setGastos(datos)
+    } catch (error) {
+      setError('No se pudieron cargar los gastos.')
+      console.error(error)
+    } finally {
+      setCargando(false)
+    }
+  }
+
+  cargarGastos()
+}, [])
+
+
+// ******************************html de la pagina home*********************
+
   return (
     <main className="home">
       <header className="home-header">
@@ -16,6 +44,23 @@ function Home() {
         <h1>Hola, Mica!</h1>
         <p>Acá tenés un resumen de tu cuenta:</p>
       </header>
+
+      <section>
+  <h2>Mis gastos</h2>
+
+  {cargando && <p>Cargando gastos...</p>}
+  {error && <p>{error}</p>}
+
+  {!cargando && !error && gastos.length === 0 && (
+    <p>Todavía no tenés gastos registrados.</p>
+  )}
+
+  {gastos.map((gasto) => (
+    <p key={gasto.id}>
+      {gasto.descripcion}: ${gasto.monto}
+    </p>
+  ))}
+</section>
 
       <section className="home-saldos">
         <div className="home-tarjeta home-debes">
@@ -38,7 +83,7 @@ function Home() {
         <button type="button" className="home-recordatorio">
           <span>Enviar recordatorio a amigo</span>
 
-          <img src="/Vector.svg" alt="" className="home-campana" />
+          <img src="/Iconos/Vector.svg" alt="" className="home-campana" />
         </button>
       </section>
 
@@ -111,19 +156,19 @@ function Home() {
 
       <nav className="home-navegacion">
         <button type="button" className="nav-activo" aria-label="Inicio">
-          <img src="/Home.svg" alt="" />
+          <img src="/Iconos/Home.svg" alt="" />
         </button>
 
         <button type="button" aria-label="Grupos">
-          <img src="/Group%2025.svg" alt="" />
+          <img src="/Iconos/Group%2025.svg" alt="" />
         </button>
 
         <button type="button" aria-label="Gastos">
-          <img src="/Notas.svg" alt="" />
+          <img src="/Iconos/Notas.svg" alt="" />
         </button>
 
         <button type="button" aria-label="Perfil">
-          <img src="/Perfil.svg" alt="" />
+          <img src="/Iconos/Perfil.svg" alt="" />
         </button>
       </nav>
     </main>

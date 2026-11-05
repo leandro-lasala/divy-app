@@ -114,3 +114,16 @@
   color: var(--azul);
   font-weight: 700;
 }
+
+
+.login-olvide {
+  display: block;
+  margin: 8px 0 16px auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--oscuro);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}

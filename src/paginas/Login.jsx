@@ -5,6 +5,18 @@ import { supabase } from "../lib/supabase";
 import "./Login.css";
 
 function Login() {
+
+
+// ******************permisos de notificaciones*********************
+
+  async function solicitarNotificaciones() {
+    if (!("Notification" in window)) return;
+
+    if (Notification.permission === "default") {
+      await Notification.requestPermission();
+    }
+  }
+
   // *********************los estados de los inputs y mensajes de error*********************
 
   const [email, setEmail] = useState("");
@@ -39,31 +51,36 @@ function Login() {
   }
 
   // ********************Recuperar contraseña*********************
-async function recuperarPassword() {
-  if (!email.trim()) {
-    setMensaje('Primero ingresá tu email.')
-    return
-  }
-
-  setMensaje('')
-  setCargando(true)
-
-  try {
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/actualizar-password`
-    })
-
-    if (error) {
-      setMensaje(error.message)
-    } else {
-      setMensaje('Si existe una cuenta con ese correo, recibirás un enlace para cambiar tu contraseña.')
+  async function recuperarPassword() {
+    if (!email.trim()) {
+      setMensaje("Primero ingresá tu email.");
+      return;
     }
-  } catch {
-    setMensaje('No se pudo enviar el correo de recuperación.')
-  } finally {
-    setCargando(false)
+
+    setMensaje("");
+    setCargando(true);
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(
+        email.trim(),
+        {
+          redirectTo: `${window.location.origin}/actualizar-password`,
+        },
+      );
+
+      if (error) {
+        setMensaje(error.message);
+      } else {
+        setMensaje(
+          "Si existe una cuenta con ese correo, recibirás un enlace para cambiar tu contraseña.",
+        );
+      }
+    } catch {
+      setMensaje("No se pudo enviar el correo de recuperación.");
+    } finally {
+      setCargando(false);
+    }
   }
-}
 
   return (
     // *********************************html del login*********************************
@@ -92,7 +109,7 @@ async function recuperarPassword() {
             <input
               id="login-email"
               type="email"
-              placeholder="micarollo98@gmail.com"
+              placeholder="tuemail@gmail.com"
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -111,18 +128,11 @@ async function recuperarPassword() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-
-            <button
-              type="button"
-              className="login-olvide"
-              onClick={recuperarPassword}
-            >
-              ¿Olvidaste tu contraseña?
-            </button>
           </div>
 
-          <button type="submit" disabled={cargando}>
+          <button onClick={solicitarNotificaciones}  type="submit" disabled={cargando}>
             {cargando ? "Ingresando..." : "Iniciar Sesión"}
+            
           </button>
 
           {mensaje && <p className="login-mensaje">{mensaje}</p>}
@@ -131,6 +141,14 @@ async function recuperarPassword() {
         <p className="login-registro">
           ¿No tenés una cuenta? <Link to="/registro">REGISTRATE</Link>
         </p>
+
+        <button
+          type="button"
+          className="login-olvide"
+          onClick={recuperarPassword}
+        >
+          ¿Olvidaste tu contraseña?
+        </button>
       </div>
     </main>
   );

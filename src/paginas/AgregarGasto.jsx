@@ -1,60 +1,70 @@
-
-
-import { useState } from 'react'
-import { useNavigate } from 'react-router'
-import { crearGasto } from '../servicios/gastos.js'
-import './AgregarGasto.css'
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { crearGasto } from "../servicios/gastos.js";
+import { subirComprobante } from "../servicios/imagenes.js";
+import "./AgregarGasto.css";
 
 function AgregarGasto() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Estados del formulario
-  const [descripcion, setDescripcion] = useState('')
-  const [monto, setMonto] = useState('')
-  const [fecha, setFecha] = useState(
-    new Date().toISOString().split('T')[0]
-  )
-  const [nota, setNota] = useState('')
-  const [guardando, setGuardando] = useState(false)
-  const [error, setError] = useState('')
+  const [descripcion, setDescripcion] = useState("");
+  const [monto, setMonto] = useState("");
+  const [fecha, setFecha] = useState(new Date().toISOString().split("T")[0]);
+  const [nota, setNota] = useState("");
+  const [comprobante, setComprobante] = useState(null);
+  const [guardando, setGuardando] = useState(false);
+  const [error, setError] = useState("");
 
   // Guardar el gasto en Supabase
   async function manejarGuardar(e) {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError("");
 
     if (!descripcion.trim() || Number(monto) <= 0) {
-      setError('Ingresá un nombre y un monto válido.')
-      return
+      setError("Ingresá un nombre y un monto válido.");
+      return;
     }
 
-    setGuardando(true)
+    setGuardando(true);
 
     try {
+      let imagenRuta = null;
+
+      if (comprobante) {
+        imagenRuta = await subirComprobante(comprobante);
+      }
+
       await crearGasto(
         descripcion.trim(),
         Number(monto),
-        'General'
-      )
+        "General",
+        imagenRuta,
+      );
 
-      navigate('/home')
+      if ("Notification" in window && Notification.permission === "granted") {
+        new Notification("Divy", {
+          body: `¡Registraste un gasto de $${monto} en ${descripcion}!`,
+        });
+      }
+
+      navigate("/home");
     } catch (error) {
-      console.error(error)
-      setError('No se pudo guardar el gasto.')
+      console.error(error);
+      setError("No se pudo guardar el gasto.");
     } finally {
-      setGuardando(false)
+      setGuardando(false);
     }
   }
 
   return (
     <main className="agregar-gasto">
-
       {/* Encabezado */}
       <header className="agregar-gasto-header">
         <button
           type="button"
           className="agregar-gasto-cancelar"
-          onClick={() => navigate('/home')}
+          onClick={() => navigate("/home")}
           aria-label="Cancelar"
         >
           <img src="/Iconos/cross.svg" alt="" />
@@ -79,7 +89,6 @@ function AgregarGasto() {
         className="agregar-gasto-formulario"
         onSubmit={manejarGuardar}
       >
-
         {/* Introducción */}
         <section className="agregar-gasto-intro">
           <h2>Añadí un nuevo gasto</h2>
@@ -90,11 +99,7 @@ function AgregarGasto() {
 
         {/* Nombre del gasto */}
         <div className="agregar-gasto-campo">
-          <img
-            src="/Iconos/lista.svg"
-            alt=""
-            className="agregar-gasto-icono"
-          />
+          <img src="/Iconos/lista.svg" alt="" className="agregar-gasto-icono" />
 
           <input
             type="text"
@@ -121,20 +126,14 @@ function AgregarGasto() {
         </div>
 
         {/* División del gasto */}
-        <button
-          type="button"
-          className="agregar-gasto-division"
-        >
-          <span>
-            Pagado por vos - Dividido en partes iguales
-          </span>
+        <button type="button" className="agregar-gasto-division">
+          <span>Pagado por vos - Dividido en partes iguales</span>
 
           <img src="/Iconos/lapiz.svg" alt="" />
         </button>
 
         {/* Opciones inferiores */}
         <div className="agregar-gasto-opciones">
-
           {/* Fecha */}
           <label className="agregar-gasto-opcion">
             <img src="/Iconos/lista 2.svg" alt="" />
@@ -164,32 +163,46 @@ function AgregarGasto() {
             type="button"
             className="agregar-gasto-opcion"
             onClick={() => {
-              const nuevaNota = window.prompt(
-                'Agregá una nota',
-                nota
-              )
+              const nuevaNota = window.prompt("Agregá una nota", nota);
 
               if (nuevaNota !== null) {
-                setNota(nuevaNota)
+                setNota(nuevaNota);
               }
             }}
           >
-            <img src="/Iconos/Note_Edit.svg" alt="" />
-            <span>{nota ? 'Editar nota' : 'Nota'}</span>
+            <img src="/Iconos/layer1.svg" alt="" />
+            <span>{nota ? "Editar nota" : "Nota"}</span>
           </button>
+        </div>
 
+        <div className="agregar-gasto-comprobante">
+          <span className="agregar-gasto-comprobante-titulo">
+            Adjuntar comprobante (opcional)
+          </span>
+
+          <label
+            htmlFor="comprobante"
+            className="agregar-gasto-comprobante-boton"
+          >
+            <img src="/Iconos/Note_Edit.svg" alt="" />
+            <span>
+              {comprobante ? comprobante.name : "Seleccionar comprobante"}
+            </span>
+          </label>
+          <input
+            type="file"
+            id="comprobante"
+            className="agregar-gasto-comprobante-input"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={(e) => setComprobante(e.target.files[0] || null)}
+          />
         </div>
 
         {/* Mensaje de error */}
-        {error && (
-          <p className="agregar-gasto-error">
-            {error}
-          </p>
-        )}
-
+        {error && <p className="agregar-gasto-error">{error}</p>}
       </form>
     </main>
-  )
+  );
 }
 
-export default AgregarGasto
+export default AgregarGasto;

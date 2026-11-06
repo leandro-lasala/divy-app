@@ -6,6 +6,26 @@
   color: var(--oscuro);
 }
 
+.home-cerrar-sesion {
+  display: block;
+  margin-left: auto;
+  padding: 7px 13px;
+  margin-bottom: 20px;
+  border: 1px solid #d8d8d8;
+  border-radius: 20px;
+  background-color: white;
+  color: #777;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.home-cerrar-sesion:hover {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
 .home-iconos {
   display: flex;
   justify-content: space-between;
@@ -31,6 +51,165 @@
   font-size: 15px;
   margin: 0;
   color: #989797;
+}
+
+.home-gastos {
+  margin-top: 20px;
+}
+
+.home-gastos-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.home-gastos-titulo h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.home-gastos-titulo p {
+  margin: 5px 0 0;
+  color: #989797;
+  font-size: 12px;
+}
+
+.home-gastos-cantidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--amarillo);
+  color: var(--naranja);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.home-gastos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.home-gasto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 58px;
+  padding: 10px 12px;
+  border: 1px solid #eeeeee;
+  border-radius: 17px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
+
+.home-gasto-info,
+.home-gasto-acciones {
+  display: flex;
+  align-items: center;
+}
+
+.home-gasto-info {
+  min-width: 0;
+  gap: 10px;
+}
+
+.home-gasto-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 31px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: var(--celeste);
+  color: var(--azul);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.home-gasto-info > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.home-gasto-info strong {
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-gasto-detalle {
+  margin-top: 3px;
+  color: #989797;
+  font-size: 11px;
+}
+
+.home-gasto-acciones {
+  flex-shrink: 0;
+  gap: 7px;
+}
+
+.home-gasto-monto {
+  color: var(--coral);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.home-gasto-comprobante,
+.home-gasto-eliminar {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.home-gasto-comprobante {
+  padding: 5px 7px;
+  border-radius: 8px;
+  background-color: #fff5f2;
+  color: var(--coral);
+  font-size: 10px;
+}
+
+.home-gasto-eliminar {
+  padding: 3px;
+  background: transparent;
+  font-size: 14px;
+}
+
+.home-gasto-eliminar img {
+  display: block;
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.home-gasto-eliminar:hover img {
+  opacity: 1;
+}
+
+.home-gastos-estado {
+  margin: 0;
+  padding: 18px;
+  border-radius: 17px;
+  background-color: white;
+  color: #989797;
+  font-size: 13px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.home-gastos-error {
+  color: var(--coral);
 }
 
 .home-saldos {
@@ -298,5 +477,3 @@
   background-color: var(--coral);
   border-radius: 50%;
 }
-
-

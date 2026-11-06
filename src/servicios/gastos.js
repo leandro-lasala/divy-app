@@ -17,7 +17,7 @@ export async function obtenerGastos() {
 
 // *******************crear gasto**********************
 
-export async function crearGasto(descripcion, monto, categoria) {
+export async function crearGasto(descripcion, monto, categoria, imagenRuta = null) {
   const { data: usuarioData, error: errorUsuario } =
     await supabase.auth.getUser()
 
@@ -35,6 +35,7 @@ export async function crearGasto(descripcion, monto, categoria) {
       descripcion: descripcion,
       monto: monto,
       categoria: categoria,
+      imagen_ruta: imagenRuta,
       usuario_id: usuarioData.user.id
     })
     .select()
@@ -44,4 +45,18 @@ export async function crearGasto(descripcion, monto, categoria) {
   }
 
   return data
+}
+
+
+// *************************Eliminar gasto**********************
+
+export async function eliminarGasto(id) {
+  const { error } = await supabase
+    .from('gastos')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    throw error
+  }
 }
